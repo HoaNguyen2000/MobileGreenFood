@@ -84,7 +84,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setProgressValue(final int progress) {
-
         // set the progress
         pgbStyle2.setProgress(progress);
         // thread is used to change the progress value
@@ -92,11 +91,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(200);
+                    Thread.sleep(300);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
                 setProgressValue(progress + 5);
 
             }

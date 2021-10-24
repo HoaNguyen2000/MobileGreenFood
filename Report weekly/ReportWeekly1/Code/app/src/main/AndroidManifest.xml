@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DemoContainer">
         <activity
+            android:name=".RatingBarActivity"
+            android:exported="true"/>
+        <activity
+            android:name=".SeekBarActivity2"
+            android:exported="true" />
+        <activity
             android:name=".SeekBarActivity"
             android:exported="true" />
         <activity
