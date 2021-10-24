@@ -14,13 +14,14 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity {
     ProgressBar pgbStyle11, pgbStyle12, pgbStyle13, pgbStyle2;
     EditText etProcess;
-    Button btnSetProcess, btnThread, btnIndeterminateMode, btnDialogRing, btnDiaglogProcess;
-    AlertDialog alert;
+    Button btnSetProcess, btnThread, btnIndeterminateMode, btnDialogRing;
+    ProgressDialog progressDialog;
     int progress = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        //Assign Variable
         pgbStyle11 = (ProgressBar) findViewById(R.id.pgbStyle11);
         pgbStyle12 = (ProgressBar) findViewById(R.id.pgbStyle12);
         pgbStyle13 = (ProgressBar) findViewById(R.id.pgbStyle13);
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         btnThread = (Button) findViewById(R.id.btnThread);
         btnIndeterminateMode = (Button) findViewById(R.id.btnIndeterminateMode);
         btnDialogRing = (Button) findViewById(R.id.btnDialogRing);
-        btnDiaglogProcess = (Button) findViewById(R.id.btnDiaglogProcess);
 
         //Event Click
         //Set Progress to pgbStyle2
@@ -63,18 +63,26 @@ public class MainActivity extends AppCompatActivity {
         btnDialogRing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-            }
-        });
-        btnDiaglogProcess.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                alert.setTitle("Alert Progress");
-                alert.setMessage("Loading...");
-                alert.show();
+                //Initialize Progress Dialog
+                progressDialog = new ProgressDialog(MainActivity.this);
+                //Show Dialog
+                progressDialog.show();
+                //set content view
+                progressDialog.setContentView(R.layout.progress_dialog);
+                //set transparent background
+                progressDialog.getWindow().setBackgroundDrawableResource(
+                        android.R.color.transparent
+                );
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        //Dismiss Progress Dialog
+        progressDialog.dismiss();
+    }
+
     private void setProgressValue(final int progress) {
 
         // set the progress
