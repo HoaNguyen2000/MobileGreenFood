@@ -1,6 +1,7 @@
 package com.example.mobilegreenfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.mobilegreenfood.DetailsProductActivity;
 import com.example.mobilegreenfood.R;
 import com.example.mobilegreenfood.model.PopularFood;
 
@@ -34,6 +36,13 @@ public class PopularFoodAdapter extends RecyclerView.Adapter<PopularFoodAdapter.
         holder.foodImage.setImageResource(popularFoodList.get(position).getImageUrl());
         holder.name.setText(popularFoodList.get(position).getName());
         holder.price.setText(popularFoodList.get(position).getPrice());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, DetailsProductActivity.class);
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

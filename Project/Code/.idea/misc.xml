@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/background_btn_login.xml" value="0.26614583333333336" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/cart_button_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/edittext_background.xml" value="0.26614583333333336" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_cart.xml" value="0.176" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_details_product.xml" value="0.264" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_login.xml" value="0.256140350877193" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_main.xml" value="0.256140350877193" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_order.xml" value="0.25" />

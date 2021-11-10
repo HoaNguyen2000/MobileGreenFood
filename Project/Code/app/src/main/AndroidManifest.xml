@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobileGreenFood">
         <activity
+            android:name=".DetailsProductActivity"
+            android:exported="true" />
+        <activity
             android:name=".CartActivity"
             android:exported="true" />
         <activity
