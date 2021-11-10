@@ -38,7 +38,7 @@
         app:srcCompat="@drawable/ic_rectangle_344" />
 
     <ImageView
-        android:id="@+id/imageView10"
+        android:id="@+id/ivProductImage"
         android:layout_width="294dp"
         android:layout_height="302dp"
         android:layout_marginTop="16dp"
@@ -62,10 +62,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+        app:layout_constraintTop_toBottomOf="@+id/ivProductImage" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/tvProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -89,7 +89,7 @@
         android:text="Tỉnh An Giang vừa nâng cấp độ dịch lên cấp 3 (vùng cam) và từ 9-11 bắt đầu áp dụng nhiều biện pháp mạnh như tạm dừng vận chuyển hành khách công cộng, dịch vụ ăn uống chỉ cho bán mang đi..."
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+        app:layout_constraintTop_toBottomOf="@+id/tvProductName" />
 
     <ImageView
         android:id="@+id/btnDownCount"
@@ -127,7 +127,7 @@
         app:srcCompat="@drawable/ic_group_401" />
 
     <TextView
-        android:id="@+id/textView11"
+        android:id="@+id/tvPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"

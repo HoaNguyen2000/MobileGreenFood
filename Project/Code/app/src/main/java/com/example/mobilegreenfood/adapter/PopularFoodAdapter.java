@@ -33,13 +33,19 @@ public class PopularFoodAdapter extends RecyclerView.Adapter<PopularFoodAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull PopularFoodViewHolder holder, int position) {
-        holder.foodImage.setImageResource(popularFoodList.get(position).getImageUrl());
-        holder.name.setText(popularFoodList.get(position).getName());
-        holder.price.setText(popularFoodList.get(position).getPrice());
+        String name = popularFoodList.get(position).getName();
+        String price = popularFoodList.get(position).getPrice();
+        Integer foodImage = popularFoodList.get(position).getImageUrl();
+        holder.foodImage.setImageResource(foodImage);
+        holder.name.setText(name);
+        holder.price.setText(price);
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsProductActivity.class);
+                intent.putExtra("name", name);
+                intent.putExtra("price", price);
+                intent.putExtra("foodImage", foodImage);
                 context.startActivity(intent);
             }
         });
