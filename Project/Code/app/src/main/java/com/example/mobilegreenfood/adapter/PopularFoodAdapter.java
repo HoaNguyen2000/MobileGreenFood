@@ -59,10 +59,6 @@ public class PopularFoodAdapter extends RecyclerView.Adapter<PopularFoodAdapter.
     public static final class PopularFoodViewHolder extends RecyclerView.ViewHolder{
         ImageView foodImage;
         TextView name, price;
-
-
-
-
         public PopularFoodViewHolder(@NonNull View itemView) {
             super(itemView);
             foodImage = itemView.findViewById(R.id.food_image);
