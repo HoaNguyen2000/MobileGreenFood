@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "504608902246",
+    "project_id": "fir-book-54a03",
+    "storage_bucket": "fir-book-54a03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:504608902246:android:5049e7971a69ef688f71a7",
+        "android_client_info": {
+          "package_name": "com.example.book"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "504608902246-p8209ds247u8v3hd1ak3qnqk8eskdcmc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAYAWeEbwWlnoXEAlwNJSyE18TYqShwuw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "504608902246-p8209ds247u8v3hd1ak3qnqk8eskdcmc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
