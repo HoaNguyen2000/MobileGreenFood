@@ -1,13 +1,14 @@
 {
   "project_info": {
     "project_number": "504608902246",
+    "firebase_url": "https://fir-book-54a03-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "fir-book-54a03",
     "storage_bucket": "fir-book-54a03.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:504608902246:android:5049e7971a69ef688f71a7",
+        "mobilesdk_app_id": "1:504608902246:android:b28d797b22b30ad38f71a7",
         "android_client_info": {
           "package_name": "com.example.book"
         }
