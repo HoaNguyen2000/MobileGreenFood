@@ -38,6 +38,7 @@ public class ViewBookActivity extends AppCompatActivity {
                 ArrayList<Book> books = new ArrayList<>();
                 for (DataSnapshot data : snapshot.getChildren()){
                     Book book = data.getValue(Book.class);
+                    book.setKey(data.getKey());
                     books.add(book);
                 }
                 adapter.setItems(books);

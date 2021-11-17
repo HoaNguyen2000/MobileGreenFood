@@ -1,6 +1,21 @@
 package com.example.book;
 
-public class Book {
+import com.google.firebase.database.Exclude;
+
+import java.io.Serializable;
+
+public class Book implements Serializable {
+    @Exclude
+    private String key;
+
+    public String getKey() {
+        return key;
+    }
+
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     private String bookName;
     private String bookType;
     private int bookPrice;

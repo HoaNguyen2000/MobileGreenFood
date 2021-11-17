@@ -1,10 +1,13 @@
 package com.example.book;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -34,6 +37,33 @@ public class ViewBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         bookViewHolder.tvBookName.setText(book.getBookName());
         bookViewHolder.tvBookType.setText(book.getBookType());
         bookViewHolder.tvBookPrice.setText("$" + String.valueOf(book.getBookPrice()));
+        bookViewHolder.tvOption.setOnClickListener(v-> {
+            PopupMenu popupMenu = new PopupMenu(context, bookViewHolder.tvOption);
+            popupMenu.inflate(R.menu.option_menu);
+            popupMenu.setOnMenuItemClickListener(item->{
+                switch (item.getItemId()){
+                    case R.id.menuEdit:
+                        Intent intent=new Intent(context,MainActivity.class);
+                        intent.putExtra("edit", book);
+                        context.startActivity(intent);
+                        break;
+                    case R.id.menuDelete:
+                        DAOBook dao=new DAOBook();
+                        dao.remove(book.getKey()).addOnSuccessListener(suc->
+                        {
+                            Toast.makeText(context, "Record is removed", Toast.LENGTH_SHORT).show();
+                            notifyItemRemoved(position);
+                            bookList.remove(book);
+                        }).addOnFailureListener(er->
+                        {
+                            Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
+                        });
+                        break;
+                }
+                return false;
+            });
+            popupMenu.show();
+        });
     }
 
     @Override
@@ -41,12 +71,13 @@ public class ViewBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return bookList.size();
     }
     public class BookViewHolder extends RecyclerView.ViewHolder{
-        TextView tvBookName, tvBookType, tvBookPrice;
+        TextView tvBookName, tvBookType, tvBookPrice, tvOption;
         public BookViewHolder(@NonNull View itemView){
             super(itemView);
             tvBookName = itemView.findViewById(R.id.tvBookName);
             tvBookPrice = itemView.findViewById(R.id.tvBookPrice);
             tvBookType = itemView.findViewById(R.id.tvBookType);
+            tvOption = itemView.findViewById(R.id.tvOption);
         }
     }
 }
