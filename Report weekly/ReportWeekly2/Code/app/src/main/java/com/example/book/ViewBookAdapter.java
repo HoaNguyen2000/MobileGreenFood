@@ -51,9 +51,11 @@ public class ViewBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                         DAOBook dao=new DAOBook();
                         dao.remove(book.getKey()).addOnSuccessListener(suc->
                         {
-                            Toast.makeText(context, "Record is removed", Toast.LENGTH_SHORT).show();
-                            notifyItemRemoved(position);
+                            Toast.makeText(context, "Đã xoá", Toast.LENGTH_SHORT).show();
                             bookList.remove(book);
+                            notifyItemRemoved(position);
+                            notifyItemRangeChanged(position, getItemCount());
+                            notifyAll();
                         }).addOnFailureListener(er->
                         {
                             Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();
