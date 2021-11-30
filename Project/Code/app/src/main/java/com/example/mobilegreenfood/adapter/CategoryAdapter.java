@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.example.mobilegreenfood.DashboardActivity;
 import com.example.mobilegreenfood.R;
 import com.example.mobilegreenfood.model.Category;
 
@@ -32,8 +34,9 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
     @Override
     public void onBindViewHolder(@NonNull CategoryViewHolder holder, int position) {
         Category item = items.get(position);
-//        holder.imgCategory.set
         holder.tvCategoryName.setText(item.getCategory_name());
+        Glide.with(context).load(item.getCategory_img()).into(holder.imgCategory);
+
     }
 
     @Override

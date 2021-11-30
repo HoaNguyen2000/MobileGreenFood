@@ -3,12 +3,12 @@ package com.example.mobilegreenfood.model;
 public class Category {
     Integer category_id;
     String category_name;
-    String category_image;
+    String category_img;
 
-    public Category(Integer category_id, String category_name, String category_image) {
+    public Category(Integer category_id, String category_name, String category_img) {
         this.category_id = category_id;
         this.category_name = category_name;
-        this.category_image = category_image;
+        this.category_img = category_img;
     }
 
     public Integer getCategory_id() {
@@ -27,11 +27,11 @@ public class Category {
         this.category_name = category_name;
     }
 
-    public String getCategory_image() {
-        return category_image;
+    public String getCategory_img() {
+        return category_img;
     }
 
-    public void setCategory_image(String category_image) {
-        this.category_image = category_image;
+    public void setCategory_img(String category_image) {
+        this.category_img = category_img;
     }
 }
