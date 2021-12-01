@@ -78,7 +78,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tvProductDescription"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -99,7 +99,7 @@
         android:layout_marginTop="16dp"
         android:background="#E5E5E5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/tvProductDescription"
         app:srcCompat="@drawable/ic_group_400" />
 
     <TextView

@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.example.mobilegreenfood.Interface.CategoryInterface;
+import com.example.mobilegreenfood.Interface.AppInterface;
 import com.example.mobilegreenfood.adapter.CategoryAdapter;
 import com.example.mobilegreenfood.adapter.SlideAdapter;
 import com.example.mobilegreenfood.model.Category;
@@ -71,7 +71,7 @@ public class DashboardActivity extends AppCompatActivity {
 
     //
     private void getCategory() {
-        CategoryInterface.categoryInterface.getListCategory().enqueue(new Callback<List<Category>>() {
+        AppInterface.APP_INTERFACE.getListCategory().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
                 Toast.makeText(DashboardActivity.this, "Success", Toast.LENGTH_LONG).show();

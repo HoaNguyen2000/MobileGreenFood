@@ -11,7 +11,9 @@ import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
 import com.example.mobilegreenfood.adapter.ListProductAdapter;
+import com.example.mobilegreenfood.adapter.PopularFoodAdapter;
 import com.example.mobilegreenfood.model.Food;
+import com.example.mobilegreenfood.model.PopularFood;
 
 import java.util.List;
 
@@ -19,41 +21,43 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class SearchProductActivity extends AppCompatActivity {
-    RecyclerView searchFoodRecycler;
+public class ProductByCategoryActivity extends AppCompatActivity {
+    RecyclerView productByCategoryRecycler;
     ListProductAdapter listProductAdapter;
     public static Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_search_product);
-    getProductByQuery(getQueryIntent());
+        setContentView(R.layout.activity_product_by_category);
+        getProductByCategoryId(getCategoryIdIntent());
     }
-    private String getQueryIntent() {
+
+    private int getCategoryIdIntent() {
         Intent intent = getIntent();
-        return intent.getStringExtra("query");
+        return Integer.parseInt(intent.getStringExtra("Category_id"));
     }
 
-    private void setProductRecycler(List<Food> foodList){
-        searchFoodRecycler = findViewById(R.id.productByCategoryRecycler);
+    private void setProductByCategoryRecycler(List<Food> foodList){
+        productByCategoryRecycler = findViewById(R.id.productByCategoryRecycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
-        searchFoodRecycler.setLayoutManager(layoutManager);
+        productByCategoryRecycler.setLayoutManager(layoutManager);
         listProductAdapter = new ListProductAdapter(this, foodList);
-        searchFoodRecycler.setAdapter(listProductAdapter);
+        productByCategoryRecycler.setAdapter(listProductAdapter);
     }
 
-    private void getProductByQuery(String query){
-        AppInterface.APP_INTERFACE.getProductByQuery(query).enqueue(new Callback<List<Food>>() {
+    private void getProductByCategoryId(int category_id){
+        AppInterface.APP_INTERFACE.getProductByCategory(category_id).enqueue(new Callback<List<Food>>() {
             @Override
             public void onResponse(Call<List<Food>> call, Response<List<Food>> response) {
                 List<Food> foodList = response.body();
-                setProductRecycler(foodList);
+                setProductByCategoryRecycler(foodList);
             }
 
             @Override
             public void onFailure(Call<List<Food>> call, Throwable t) {
-                Toast.makeText(SearchProductActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(ProductByCategoryActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
     }
+
 }

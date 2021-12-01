@@ -6,27 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".SearchProductActivity">
 
-    <TextView
-        android:id="@+id/tvSearchHeader"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <ImageView
+        android:id="@+id/btnSearchProductActivity"
+        android:layout_width="54dp"
+        android:layout_height="44dp"
         android:layout_marginStart="16dp"
+        app:layout_constraintBottom_toBottomOf="@+id/edSearchProductActivity"
+        app:layout_constraintStart_toEndOf="@+id/edSearchProductActivity"
+        app:layout_constraintTop_toTopOf="@+id/edSearchProductActivity"
+        app:srcCompat="@drawable/ic_baseline_search_24" />
+
+    <EditText
+        android:id="@+id/edSearchProductActivity"
+        android:layout_width="308dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="16dp"
-        android:fontFamily="@font/semibold"
-        android:text="Kết quả tìm kiếm cho:"
-        android:textStyle="bold"
-        android:textSize="24sp"
+        android:background="@drawable/search_bg"
+        android:ems="10"
+        android:hint="Tìm tại đây"
+        android:inputType="textPersonName"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchFoodRecycler"
         android:layout_width="409dp"
-        android:layout_height="680dp"
+        android:layout_height="650dp"
         android:layout_marginStart="2dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="2dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvSearchHeader" />
+        app:layout_constraintTop_toBottomOf="@+id/edSearchProductActivity" />
 </androidx.constraintlayout.widget.ConstraintLayout>

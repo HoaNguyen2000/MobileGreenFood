@@ -43,7 +43,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="36dp"
             android:fontFamily="@font/semibold"
-            android:text="Hello Hoà!"
+            android:text="Trang chủ"
             android:textColor="#0E0E0E"
             android:textSize="36sp"
             android:textStyle="bold"
@@ -114,6 +114,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Sản phẩm"
+                    android:fontFamily="@font/semibold"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -143,6 +146,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Giỏ hàng"
+                    android:fontFamily="@font/semibold"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -172,6 +178,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Hoá đơn"
+                    android:fontFamily="@font/semibold"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textAlignment="center" />
             </LinearLayout>
 
@@ -193,7 +202,7 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_centerInParent="true"
-                        app:srcCompat="@drawable/ic_baseline_favorite_24" />
+                        app:srcCompat="@drawable/ic_baseline_settings_24" />
                 </RelativeLayout>
 
                 <TextView
@@ -201,6 +210,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_horizontal"
                     android:text="Cài đặt"
+                    android:fontFamily="@font/semibold"
+                    android:textStyle="bold"
+                    android:textColor="@color/black"
                     android:textAlignment="center" />
             </LinearLayout>
         </LinearLayout>
