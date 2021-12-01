@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
@@ -22,20 +25,31 @@ import retrofit2.Response;
 public class SearchProductActivity extends AppCompatActivity {
     RecyclerView searchFoodRecycler;
     ListProductAdapter listProductAdapter;
+    EditText edSearchProductActivity;
+    ImageView btnSearchProductActivity;
     public static Context context;
+    String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_product);
-    getProductByQuery(getQueryIntent());
-    }
-    private String getQueryIntent() {
+        edSearchProductActivity = findViewById(R.id.edSearchProductActivity);
+        btnSearchProductActivity = findViewById(R.id.btnSearchProductActivity);
         Intent intent = getIntent();
-        return intent.getStringExtra("query");
+        query = intent.getStringExtra("query");
+        edSearchProductActivity.setText(query);
+        getProductByQuery(query);
+        btnSearchProductActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                query = edSearchProductActivity.getText().toString();
+                getProductByQuery(query);
+            }
+        });
     }
 
     private void setProductRecycler(List<Food> foodList){
-        searchFoodRecycler = findViewById(R.id.productByCategoryRecycler);
+        searchFoodRecycler = findViewById(R.id.searchFoodRecycler);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         searchFoodRecycler.setLayoutManager(layoutManager);
         listProductAdapter = new ListProductAdapter(this, foodList);

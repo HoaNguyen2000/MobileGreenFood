@@ -56,7 +56,7 @@ public class DetailsProductActivity extends AppCompatActivity {
 
     private int getProductIdIntent(){
         Intent intent = getIntent();
-        return Integer.parseInt(intent.getStringExtra("product_id"));
+        return intent.getIntExtra("product_id", 0);
     }
 
     private void setItem(String name, String price, String productDescription, String productImage){

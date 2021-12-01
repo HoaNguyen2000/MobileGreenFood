@@ -1,6 +1,7 @@
 package com.example.mobilegreenfood.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mobilegreenfood.DashboardActivity;
+import com.example.mobilegreenfood.DetailsProductActivity;
+import com.example.mobilegreenfood.ProductByCategoryActivity;
 import com.example.mobilegreenfood.R;
 import com.example.mobilegreenfood.model.Category;
 
@@ -36,7 +39,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.Catego
         Category item = items.get(position);
         holder.tvCategoryName.setText(item.getCategory_name());
         Glide.with(context).load(item.getCategory_img()).into(holder.imgCategory);
-
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ProductByCategoryActivity.class);
+                intent.putExtra("category_id", item.getCategory_id());
+                intent.putExtra("category_name", item.getCategory_name());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

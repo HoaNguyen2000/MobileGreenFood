@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -28,6 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
     RecyclerView categoryRecycler;
     CategoryAdapter categoryAdapter;
     ImageView btnSearchProduct;
+    EditText edSearchProduct;
     SliderView sliderView;
     int[] listImage = {
             R.drawable.banner1,
@@ -43,12 +46,15 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         btnSearchProduct = findViewById(R.id.btnSearchProduct);
         sliderView = findViewById(R.id.imageSlide);
+        edSearchProduct = findViewById(R.id.edSearchProduct);
         setImageSlide(listImage);
         getCategory();
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent intent = new Intent(DashboardActivity.this, SearchProductActivity.class);
+                intent.putExtra("query", edSearchProduct.getText().toString());
+                startActivity(intent);
             }
         });
     }

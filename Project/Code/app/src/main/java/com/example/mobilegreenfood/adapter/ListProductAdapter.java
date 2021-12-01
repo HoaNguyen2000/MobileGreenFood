@@ -45,10 +45,6 @@ public class ListProductAdapter extends RecyclerView.Adapter<ListProductAdapter.
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsProductActivity.class);
                 intent.putExtra("product_id", foodList.get(position).getProduct_id());
-//                i.putExtra("foodName", searchFoodList.get(position).getFoodName());
-//                i.putExtra("foodPrice", searchFoodList.get(position).getFoodPrice());
-//                i.putExtra("foodImageUrl", searchFoodList.get(position).getFoodImageUrl());
-//                i.putExtra("foodRating", searchFoodList.get(position).getFoodRating());
                 context.startActivity(intent);
             }
         });
