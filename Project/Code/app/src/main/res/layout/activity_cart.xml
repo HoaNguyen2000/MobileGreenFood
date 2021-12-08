@@ -10,12 +10,12 @@
         android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background=""
         tools:layout_editor_absoluteX="0dp"
         tools:layout_editor_absoluteY="0dp">
 
         <LinearLayout
             android:id="@+id/layoutHeader"
+            android:background="#F6F4F4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
@@ -24,17 +24,18 @@
                 android:id="@+id/tvHearder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="5dp"
                 android:fontFamily="@font/semibold"
                 android:text="Giỏ hàng"
                 android:textAlignment="center"
                 android:textColor="#ff3d00"
-                android:textSize="20sp"
+                android:textSize="30dp"
                 android:textStyle="bold" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="200dp"
+                android:id="@+id/rvCartItems">
 
             </androidx.recyclerview.widget.RecyclerView>
 
@@ -45,13 +46,14 @@
 
                 <TextView
                     android:id="@+id/textView8"
+                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/semibold"
                     android:text="Tổng tiền"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -63,29 +65,40 @@
                     android:text="$99"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="70dp"
-                android:textAlignment="inherit">
+                android:textAlignment="inherit"
+                android:layout_gravity="center">
 
                 <EditText
                     android:id="@+id/editTextTextPersonName2"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="40sp"
                     android:layout_weight="1"
                     android:ems="10"
+                    android:fontFamily="@font/semibold"
+                    android:textStyle="bold"
+                    android:layout_marginStart="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:background="@drawable/edittext_background"
+                    android:textSize="20sp"
+                    android:hint="Nhập mã giảm tại đây"
+                    android:layout_gravity="center"
                     android:inputType="textPersonName"
-                    android:text="inputhere" />
+                     />
 
                 <ImageView
                     android:id="@+id/imageView11"
                     android:layout_width="100dp"
                     android:layout_height="45dp"
                     android:layout_weight="1"
+                    android:layout_gravity="center"
                     app:srcCompat="@drawable/ic_group_401" />
 
             </LinearLayout>
@@ -97,13 +110,14 @@
 
                 <TextView
                     android:id="@+id/textView11"
+                    android:layout_marginStart="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/semibold"
                     android:text="Giảm giá"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
 
                 <TextView
@@ -115,13 +129,13 @@
                     android:text="$29"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
-                    android:textSize="18sp"
+                    android:textSize="20sp"
                     android:textStyle="bold" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="30dp"
+                android:layout_height="40dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -131,6 +145,7 @@
                     android:layout_weight="1"
                     android:fontFamily="@font/semibold"
                     android:text="Thành tiền"
+                    android:layout_marginStart="10dp"
                     android:textColor="@color/black"
                     android:textSize="24sp"
                     android:textStyle="bold" />
@@ -147,6 +162,18 @@
                     android:textSize="24sp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:textSize="25dp"
+                android:gravity="center"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="Thanh toán"
+                android:background="@drawable/button_orange_corner"
+                />
         </LinearLayout>
     </ScrollView>
 

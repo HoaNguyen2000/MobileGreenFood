@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/background_btn_login.xml" value="0.26614583333333336" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/button_orange_corner.xml" value="0.26614583333333336" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/cart_button_bg.xml" value="0.26614583333333336" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/edittext_background.xml" value="0.26614583333333336" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/drawable/ic_account.xml" value="0.26614583333333336" />
@@ -29,6 +30,7 @@
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_order.xml" value="0.25" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_product_by_category.xml" value="0.14788732394366197" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_search_product.xml" value="0.12547528517110265" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/cart_item.xml" value="0.4" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/category_item.xml" value="0.536" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/food_item.xml" value="0.536" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/image_slide_item.xml" value="0.13858695652173914" />
