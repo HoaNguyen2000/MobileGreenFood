@@ -74,7 +74,7 @@ public class DetailsProductActivity extends AppCompatActivity {
                 String price = foodList.get(0).getProduct_price();
                 String description = foodList.get(0).getProduct_description();
                 String image = foodList.get(0).getProduct_image();
-                setItem(name, price, description, image);
+                setItem(name,"$" + price, description, image);
             }
 
             @Override
