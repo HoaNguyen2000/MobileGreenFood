@@ -100,7 +100,8 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:background="#d4cbe5"
-                    android:elevation="8dp">
+                    android:elevation="8dp"
+                    android:id="@+id/btnMain">
 
                     <ImageView
                         android:layout_width="30dp"
@@ -132,7 +133,8 @@
                     android:layout_height="60dp"
                     android:layout_margin="10dp"
                     android:background="#7adccf"
-                    android:elevation="8dp">
+                    android:elevation="8dp"
+                    android:id="@+id/btnCart">
 
                     <ImageView
                         android:layout_width="30dp"

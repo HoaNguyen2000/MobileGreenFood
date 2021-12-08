@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MobileGreenFood"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".CartActivity"
+            android:exported="false" />
+        <activity
             android:name=".ProductByCategoryActivity"
             android:exported="false" />
         <activity

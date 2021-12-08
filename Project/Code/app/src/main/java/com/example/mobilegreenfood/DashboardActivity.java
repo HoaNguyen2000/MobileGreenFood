@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
@@ -32,6 +33,7 @@ public class DashboardActivity extends AppCompatActivity {
     ImageView btnSearchProduct;
     EditText edSearchProduct;
     SliderView sliderView;
+    RelativeLayout btnMain, btnCart;
     int[] listImage = {
             R.drawable.banner1,
             R.drawable.banner2,
@@ -44,9 +46,7 @@ public class DashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-        btnSearchProduct = findViewById(R.id.btnSearchProduct);
-        sliderView = findViewById(R.id.imageSlide);
-        edSearchProduct = findViewById(R.id.edSearchProduct);
+        init();
         setImageSlide(listImage);
         getCategory();
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
@@ -57,8 +57,30 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-    }
 
+        btnMain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        btnCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+//                startActivity(intent);
+            }
+        });
+    }
+    private void init(){
+        btnSearchProduct = findViewById(R.id.btnSearchProduct);
+        sliderView = findViewById(R.id.imageSlide);
+        edSearchProduct = findViewById(R.id.edSearchProduct);
+        btnMain = findViewById(R.id.btnMain);
+        btnCart = findViewById(R.id.btnCart);
+    }
     private void setImageSlide(int[] listImage) {
         SlideAdapter slideAdapter = new SlideAdapter(listImage);
         sliderView.setSliderAdapter(slideAdapter);
@@ -75,7 +97,7 @@ public class DashboardActivity extends AppCompatActivity {
         categoryRecycler.setAdapter(categoryAdapter);
     }
 
-    //
+
     private void getCategory() {
         AppInterface.APP_INTERFACE.getListCategory().enqueue(new Callback<List<Category>>() {
             @Override
