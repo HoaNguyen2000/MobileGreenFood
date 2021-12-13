@@ -50,7 +50,6 @@ public class ProductByCategoryActivity extends AppCompatActivity {
         productByCategoryRecycler.setLayoutManager(layoutManager);
         listProductAdapter = new ListProductAdapter(this, foodList);
         productByCategoryRecycler.setAdapter(listProductAdapter);
-        Toast.makeText(ProductByCategoryActivity.this, "XAX", Toast.LENGTH_LONG).show();
     }
 
     private void getProductByCategoryId(int category_id){
