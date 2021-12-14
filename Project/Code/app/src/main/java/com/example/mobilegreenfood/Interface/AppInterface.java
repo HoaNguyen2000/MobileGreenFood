@@ -15,6 +15,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
@@ -50,14 +51,15 @@ public interface AppInterface {
 
     @POST("api/login")
     @FormUrlEncoded
-    Call <List<User>> login(
+    Call <User> login(
             @Field("email") String email,
             @Field("password") String password
     );
-
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/get-user")
-    Call<List<User>> getUser(@Header("Authorization") String authHeader);
+    Call <User> getUser(@Header("Authorization") String authHeader);
 
+    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/logout")
     Call logout(@Header("Authorization") String authHeader);
 }

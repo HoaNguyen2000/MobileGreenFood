@@ -54,8 +54,7 @@ public class ViewBookAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                             Toast.makeText(context, "Đã xoá", Toast.LENGTH_SHORT).show();
                             bookList.remove(book);
                             notifyItemRemoved(position);
-                            notifyItemRangeChanged(position, getItemCount());
-                            notifyAll();
+
                         }).addOnFailureListener(er->
                         {
                             Toast.makeText(context, ""+er.getMessage(), Toast.LENGTH_SHORT).show();

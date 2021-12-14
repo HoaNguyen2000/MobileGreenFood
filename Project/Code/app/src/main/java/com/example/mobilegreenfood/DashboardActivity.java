@@ -10,12 +10,15 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
+import com.example.mobilegreenfood.SharedPreference.TokenUser;
 import com.example.mobilegreenfood.adapter.CategoryAdapter;
 import com.example.mobilegreenfood.adapter.SlideAdapter;
 import com.example.mobilegreenfood.model.Category;
+import com.example.mobilegreenfood.model.User;
 import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType;
 import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
@@ -28,12 +31,15 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
+    String token = "Bearer " + LoginActivity.TOKEN_API;
     RecyclerView categoryRecycler;
     CategoryAdapter categoryAdapter;
-    ImageView btnSearchProduct;
+    ImageView btnSearchProduct, imgAvatarUser;
     EditText edSearchProduct;
+    TextView tvHome;
     SliderView sliderView;
     RelativeLayout btnMain, btnCart;
+    public static User infoUser;
     int[] listImage = {
             R.drawable.banner1,
             R.drawable.banner2,
@@ -48,6 +54,7 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         init();
         setImageSlide(listImage);
+        getUser();
         getCategory();
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,6 +65,12 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
 
+        imgAvatarUser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                logout();
+            }
+        });
         btnMain.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,12 +87,30 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
+
+    private void logout() {
+        AppInterface.APP_INTERFACE.logout(token).enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+                token = null;
+                LoginActivity.TOKEN_API = null;
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
     private void init(){
         btnSearchProduct = findViewById(R.id.btnSearchProduct);
         sliderView = findViewById(R.id.imageSlide);
         edSearchProduct = findViewById(R.id.edSearchProduct);
         btnMain = findViewById(R.id.btnMain);
         btnCart = findViewById(R.id.btnCart);
+        tvHome = findViewById(R.id.tvHome);
+        imgAvatarUser = findViewById(R.id.imgAvatarUser);
     }
     private void setImageSlide(int[] listImage) {
         SlideAdapter slideAdapter = new SlideAdapter(listImage);
@@ -97,7 +128,20 @@ public class DashboardActivity extends AppCompatActivity {
         categoryRecycler.setAdapter(categoryAdapter);
     }
 
+    private void getUser(){
+        AppInterface.APP_INTERFACE.getUser(token).enqueue(new Callback<User>() {
+            @Override
+            public void onResponse(Call<User> call, Response<User> response) {
+                infoUser = response.body();
+                tvHome.setText("Xin chào " + infoUser.getName());
+            }
 
+            @Override
+            public void onFailure(Call<User> call, Throwable t) {
+                Toast.makeText(DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
     private void getCategory() {
         AppInterface.APP_INTERFACE.getListCategory().enqueue(new Callback<List<Category>>() {
             @Override

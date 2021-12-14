@@ -10,6 +10,10 @@ public class User {
     public User() {
     }
 
+    public User(String api_token) {
+        this.api_token = api_token;
+    }
+
     public User(int id, String name, String email, String roles, String api_token) {
         this.id = id;
         this.name = name;
