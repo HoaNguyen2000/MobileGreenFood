@@ -1,5 +1,6 @@
 package com.example.mobilegreenfood.Interface;
 
+import com.example.mobilegreenfood.model.Carts;
 import com.example.mobilegreenfood.model.Category;
 import com.example.mobilegreenfood.model.Food;
 import com.example.mobilegreenfood.model.User;
@@ -31,6 +32,7 @@ public interface AppInterface {
             .build()
             .create(AppInterface.class);
 
+    //category & product
     @GET("api/get-category")
     Call <List<Category>> getListCategory();
 
@@ -49,6 +51,7 @@ public interface AppInterface {
             @Path("product_id") int product_id
     );
 
+    //auth
     @POST("api/login")
     @FormUrlEncoded
     Call <User> login(
@@ -62,4 +65,24 @@ public interface AppInterface {
     @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/logout")
     Call logout(@Header("Authorization") String authHeader);
+
+    //cart
+    @POST("api/add-product-cart")
+    @FormUrlEncoded
+    Call <Carts>  addProductCarts(
+            @Header("Authorization") String authHeader,
+            @Field("product_id") int product_id,
+            @Field("quantity") int quantity
+    );
+
+    @GET("api/my-cart")
+    Call<List<Carts>> getCarts(
+            @Header("Authorization") String authHeader
+    );
+
+    @GET("api/delete-product-cart/{id}")
+    Call deleteProductCarts(
+            @Header("Authorization") String authHeader,
+            @Path("id") int id
+    );
 }
