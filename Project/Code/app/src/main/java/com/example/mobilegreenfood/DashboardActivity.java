@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -68,7 +70,7 @@ public class DashboardActivity extends AppCompatActivity {
         imgAvatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
             }
         });
         btnMain.setOnClickListener(new View.OnClickListener() {
@@ -94,8 +96,10 @@ public class DashboardActivity extends AppCompatActivity {
             public void onResponse(Call call, Response response) {
                 token = null;
                 LoginActivity.TOKEN_API = null;
+                Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
             }
-
             @Override
             public void onFailure(Call call, Throwable t) {
                 Toast.makeText(DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
@@ -156,5 +160,19 @@ public class DashboardActivity extends AppCompatActivity {
                 Toast.makeText(DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private void alertDialogMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.setCancelable(true);
+        builder.setNegativeButton("Huỷ", null);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                logout();
+            }
+        });
+        builder.show();
     }
 }
