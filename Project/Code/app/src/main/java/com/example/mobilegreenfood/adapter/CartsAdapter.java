@@ -37,8 +37,32 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
     public void onBindViewHolder(@NonNull CartsViewHolder holder, int position) {
         Carts item = cartsList.get(position);
         holder.cartProductName.setText(item.getProduct_name());
-        holder.tvCartQuantity.setText(item.getQuantity());
+        holder.tvCartQuantity.setText(String.valueOf(item.getQuantity()));
+        holder.cartProductPrice.setText("$"+ String.valueOf(item.getProduct_price()));
         Glide.with(context).load(item.getProduct_image()).into(holder.imgCartItem);
+        holder.btnDownCartQty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQty = Integer.parseInt(holder.tvCartQuantity.getText().toString());
+                if(currentQty <= 1){}
+                else{
+                    int result = currentQty - 1;
+                    holder.tvCartQuantity.setText(String.valueOf(result));
+                }
+            }
+        });
+        holder.btnUpCartQty.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int currentQty = Integer.parseInt(holder.tvCartQuantity.getText().toString());
+                if(currentQty >= 20){}
+                else{
+                    int result = currentQty + 1;
+                    holder.tvCartQuantity.setText(String.valueOf(result));
+                }
+            }
+        });
+
     }
 
     @Override
@@ -47,14 +71,17 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
     }
 
     public static class CartsViewHolder extends RecyclerView.ViewHolder{
-        TextView cartProductName, tvCartQuantity;
-        ImageView imgCartItem;
+        TextView cartProductName, tvCartQuantity, cartProductPrice;
+        ImageView imgCartItem, btnUpCartQty, btnDownCartQty;
 
         public CartsViewHolder(@NonNull View itemView) {
             super(itemView);
             cartProductName = itemView.findViewById(R.id.cartProductName);
             imgCartItem = itemView.findViewById(R.id.imgCartItem);
             tvCartQuantity = itemView.findViewById(R.id.tvCartQuantity);
+            btnUpCartQty = itemView.findViewById(R.id.btnUpCartQty);
+            btnDownCartQty = itemView.findViewById(R.id.btnDownCartQty);
+            cartProductPrice = itemView.findViewById(R.id.cartProductPrice);
         }
     }
 }

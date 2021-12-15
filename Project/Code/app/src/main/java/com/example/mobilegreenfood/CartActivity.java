@@ -5,6 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
@@ -23,16 +24,20 @@ import retrofit2.Response;
 public class CartActivity extends AppCompatActivity {
     RecyclerView rvCartItems;
     CartsAdapter cartsAdapter;
+    TextView tvCartTotalPrice, tvCartFinalPrice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         init();
         loadItemCart();
+
     }
 
     private void init(){
         rvCartItems = findViewById(R.id.rvCartItems);
+        tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
+        tvCartFinalPrice = findViewById(R.id.tvCartFinalPrice);
     }
 
     private void setCartRecycler(List<Carts> items) {
@@ -47,6 +52,7 @@ public class CartActivity extends AppCompatActivity {
             public void onResponse(Call<List<Carts>> call, Response<List<Carts>> response) {
                 List<Carts> cartsList = response.body();
                 setCartRecycler(cartsList);
+                caculatorPrice(cartsList);
             }
 
             @Override
@@ -54,5 +60,13 @@ public class CartActivity extends AppCompatActivity {
                 Toast.makeText(CartActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private void caculatorPrice(List<Carts> carts){
+        int total = 0;
+        for (Carts cart : carts) {
+            total += cart.getProduct_price() * cart.getQuantity();
+        }
+        tvCartTotalPrice.setText("$"+String.valueOf(total));
+        tvCartFinalPrice.setText("$"+String.valueOf(total));
     }
 }

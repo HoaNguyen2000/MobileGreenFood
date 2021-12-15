@@ -34,7 +34,7 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="450dp"
                 android:id="@+id/rvCartItems">
 
             </androidx.recyclerview.widget.RecyclerView>
@@ -57,7 +57,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView6"
+                    android:id="@+id/tvCartTotalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -126,7 +126,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/semibold"
-                    android:text="$29"
+                    android:text="$0"
                     android:textAlignment="textEnd"
                     android:textColor="@color/black"
                     android:textSize="20sp"
@@ -151,7 +151,7 @@
                     android:textStyle="bold" />
 
                 <TextView
-                    android:id="@+id/textView13"
+                    android:id="@+id/tvCartFinalPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

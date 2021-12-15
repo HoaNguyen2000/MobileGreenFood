@@ -138,7 +138,6 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 infoUser = response.body();
-                tvHome.setText("Xin chào " + infoUser.getName());
             }
 
             @Override
@@ -151,7 +150,6 @@ public class DashboardActivity extends AppCompatActivity {
         AppInterface.APP_INTERFACE.getListCategory().enqueue(new Callback<List<Category>>() {
             @Override
             public void onResponse(Call<List<Category>> call, Response<List<Category>> response) {
-                Toast.makeText(DashboardActivity.this, "Success", Toast.LENGTH_LONG).show();
                 List<Category> categories = (List<Category>) response.body();
                 setCategoryRecycler((ArrayList<Category>) categories);
             }

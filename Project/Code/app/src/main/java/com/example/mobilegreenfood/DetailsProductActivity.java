@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -70,7 +70,7 @@ public class DetailsProductActivity extends AppCompatActivity {
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvCountProduct = (TextView) findViewById(R.id.tvCountProduct);
         tvProductDescription = (TextView) findViewById(R.id.tvProductDescription);
-        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnAddToCart = findViewById(R.id.btnAddProductToCart);
         btnOpenCart = findViewById(R.id.btnOpenCart);
     }
 
@@ -91,7 +91,7 @@ public class DetailsProductActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Carts> call, Response<Carts> response) {
                 if(response.code() == 203){
-                    Toast.makeText(DetailsProductActivity.this, "Đã thêm số lượng vào giỏ", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailsProductActivity.this, "Đã cộng số lượng vào giỏ", Toast.LENGTH_LONG).show();
                 }else if(response.code() == 200){
                     Toast.makeText(DetailsProductActivity.this, "Đã thêm vào giỏ", Toast.LENGTH_LONG).show();
                 }

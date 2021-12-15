@@ -141,7 +141,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnUpCount" />
 
     <Button
-        android:id="@+id/btnAddToCart"
+        android:id="@+id/btnAddProductToCart"
         android:layout_width="347dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"

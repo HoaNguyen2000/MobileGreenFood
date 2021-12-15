@@ -8,7 +8,7 @@
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/static_rv_bg"
-    android:backgroundTint="#0DBDB6B6"
+
     android:elevation="3dp">
 
     <ImageView
@@ -27,8 +27,8 @@
 
     <TextView
         android:id="@+id/cartProductName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="230dp"
+        android:layout_height="50dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
@@ -37,13 +37,13 @@
         android:textColor="#373b54"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/cart_product_price"
+        app:layout_constraintEnd_toStartOf="@+id/cartProductPrice"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/imgCartItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/cart_btn_up_qty"
+        android:id="@+id/btnUpCartQty"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -53,7 +53,7 @@
         app:srcCompat="@drawable/ic_group_401" />
 
     <ImageView
-        android:id="@+id/cart_btn_down_qty"
+        android:id="@+id/btnDownCartQty"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
@@ -76,40 +76,31 @@
         android:textColor="#373b54"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cart_btn_up_qty"
-        app:layout_constraintStart_toEndOf="@+id/cart_btn_up_qty"
-        app:layout_constraintTop_toTopOf="@+id/cart_btn_up_qty" />
+        app:layout_constraintBottom_toBottomOf="@+id/btnUpCartQty"
+        app:layout_constraintStart_toEndOf="@+id/btnUpCartQty"
+        app:layout_constraintTop_toTopOf="@+id/btnUpCartQty" />
 
     <TextView
-        android:id="@+id/cart_product_price"
+        android:id="@+id/cartProductPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="12dp"
         android:text="$99"
         android:textColor="#F44336"
         android:textSize="18dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/cartProductName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cartProductName" />
-
-    <ImageView
-        android:id="@+id/cart_btn_delete"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginTop="36dp"
-        app:layout_constraintEnd_toEndOf="@+id/cart_product_price"
-        app:layout_constraintStart_toStartOf="@+id/cart_product_price"
-        app:layout_constraintTop_toBottomOf="@+id/cart_product_price"
-        app:srcCompat="@android:drawable/ic_menu_delete" />
+        app:layout_constraintTop_toTopOf="@+id/cartProductName"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/cart_btn_update_qty"
         android:layout_width="35dp"
         android:layout_height="35dp"
-        android:layout_marginEnd="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/cart_btn_delete"
-        app:layout_constraintEnd_toStartOf="@+id/cart_btn_delete"
-        app:layout_constraintTop_toTopOf="@+id/cart_btn_delete"
+        android:layout_marginTop="35dp"
+        app:layout_constraintEnd_toEndOf="@+id/cartProductPrice"
+        app:layout_constraintStart_toStartOf="@+id/cartProductPrice"
+        app:layout_constraintTop_toBottomOf="@+id/cartProductPrice"
         app:srcCompat="@drawable/ic_baseline_check_24" />
 </androidx.constraintlayout.widget.ConstraintLayout>
