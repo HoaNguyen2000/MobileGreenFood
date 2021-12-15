@@ -12,7 +12,7 @@
     android:elevation="3dp">
 
     <ImageView
-        android:id="@+id/imageView12"
+        android:id="@+id/imgCartItem"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="4dp"
@@ -26,7 +26,7 @@
         app:srcCompat="@drawable/asiafood2" />
 
     <TextView
-        android:id="@+id/cart_product_name"
+        android:id="@+id/cartProductName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -39,7 +39,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toStartOf="@+id/cart_product_price"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/imgCartItem"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
@@ -49,7 +49,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/imageView12"
+        app:layout_constraintStart_toEndOf="@+id/imgCartItem"
         app:srcCompat="@drawable/ic_group_401" />
 
     <ImageView
@@ -58,14 +58,14 @@
         android:layout_height="40dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="-2dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView10"
-        app:layout_constraintStart_toEndOf="@+id/textView10"
-        app:layout_constraintTop_toTopOf="@+id/textView10"
+        app:layout_constraintBottom_toBottomOf="@+id/tvCartQuantity"
+        app:layout_constraintStart_toEndOf="@+id/tvCartQuantity"
+        app:layout_constraintTop_toTopOf="@+id/tvCartQuantity"
         app:layout_constraintVertical_bias="0.4"
         app:srcCompat="@drawable/ic_group_400" />
 
     <TextView
-        android:id="@+id/textView10"
+        android:id="@+id/tvCartQuantity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -89,9 +89,9 @@
         android:textColor="#F44336"
         android:textSize="18dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/cart_product_name"
+        app:layout_constraintBottom_toBottomOf="@+id/cartProductName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/cart_product_name" />
+        app:layout_constraintTop_toTopOf="@+id/cartProductName" />
 
     <ImageView
         android:id="@+id/cart_btn_delete"

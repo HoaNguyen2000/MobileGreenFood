@@ -6,12 +6,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mobilegreenfood.Interface.AppInterface;
+import com.example.mobilegreenfood.model.Carts;
 import com.example.mobilegreenfood.model.Food;
 
 import java.util.List;
@@ -21,14 +23,30 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DetailsProductActivity extends AppCompatActivity {
-    ImageView btnUpCount, btnDownCount, ivProductImage;
+    Button btnAddToCart;
+    ImageView btnUpCount, btnDownCount, ivProductImage, btnOpenCart;
     TextView tvCountProduct, tvProductName, tvPrice, tvProductDescription;
+    int productId = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_details_product);
         init();
         getDetailsProduct(getProductIdIntent());
+
+        btnAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                addProductToCart();
+            }
+        });
+        btnOpenCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailsProductActivity.this, CartActivity.class);
+                startActivity(intent);
+            }
+        });
         btnDownCount.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,6 +70,8 @@ public class DetailsProductActivity extends AppCompatActivity {
         tvPrice = (TextView) findViewById(R.id.tvPrice);
         tvCountProduct = (TextView) findViewById(R.id.tvCountProduct);
         tvProductDescription = (TextView) findViewById(R.id.tvProductDescription);
+        btnAddToCart = findViewById(R.id.btnAddToCart);
+        btnOpenCart = findViewById(R.id.btnOpenCart);
     }
 
     private int getProductIdIntent(){
@@ -65,6 +85,24 @@ public class DetailsProductActivity extends AppCompatActivity {
         tvProductDescription.setText(productDescription);
         Glide.with(this).load(productImage).into(ivProductImage);
     }
+
+    private void addProductToCart(){
+        AppInterface.APP_INTERFACE.addProductCarts(DashboardActivity.token, productId, Integer.parseInt((String) tvCountProduct.getText())).enqueue(new Callback<Carts>() {
+            @Override
+            public void onResponse(Call<Carts> call, Response<Carts> response) {
+                if(response.code() == 203){
+                    Toast.makeText(DetailsProductActivity.this, "Đã thêm số lượng vào giỏ", Toast.LENGTH_LONG).show();
+                }else if(response.code() == 200){
+                    Toast.makeText(DetailsProductActivity.this, "Đã thêm vào giỏ", Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Carts> call, Throwable t) {
+                Toast.makeText(DetailsProductActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        });
+    }
     private void getDetailsProduct(int product_id){
         AppInterface.APP_INTERFACE.getDetailsProduct(product_id).enqueue(new Callback<List<Food>>() {
             @Override
@@ -75,6 +113,7 @@ public class DetailsProductActivity extends AppCompatActivity {
                 String description = foodList.get(0).getProduct_description();
                 String image = foodList.get(0).getProduct_image();
                 setItem(name,"$" + price, description, image);
+                productId = foodList.get(0).getProduct_id();
             }
 
             @Override

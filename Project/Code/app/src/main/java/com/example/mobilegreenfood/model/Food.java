@@ -1,11 +1,11 @@
 package com.example.mobilegreenfood.model;
 
 public class Food {
-    public int product_id;
-    public String product_name;
-    public String product_price;
-    public String product_image;
-    public String product_description;
+    private int product_id;
+    private String product_name;
+    private String product_price;
+    private String product_image;
+    private String product_description;
 
     public Food() {
     }

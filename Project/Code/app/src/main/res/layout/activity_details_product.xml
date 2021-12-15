@@ -23,20 +23,20 @@
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView9"
-        app:layout_constraintEnd_toStartOf="@+id/imageView9"
+        app:layout_constraintBottom_toBottomOf="@+id/btnOpenCart"
+        app:layout_constraintEnd_toStartOf="@+id/btnOpenCart"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/ic_bx_share_alt_1" />
 
     <ImageView
-        android:id="@+id/imageView9"
+        android:id="@+id/btnOpenCart"
         android:layout_width="35dp"
         android:layout_height="33dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_rectangle_344" />
+        app:srcCompat="@drawable/ic_baseline_shopping_cart_24" />
 
     <ImageView
         android:id="@+id/ivProductImage"
@@ -141,7 +141,7 @@
         app:layout_constraintTop_toTopOf="@+id/btnUpCount" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btnAddToCart"
         android:layout_width="347dp"
         android:layout_height="65dp"
         android:layout_marginTop="16dp"

@@ -33,7 +33,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
-    String token = "Bearer " + LoginActivity.TOKEN_API;
+    public static String token = "Bearer " + LoginActivity.TOKEN_API;
     RecyclerView categoryRecycler;
     CategoryAdapter categoryAdapter;
     ImageView btnSearchProduct, imgAvatarUser;
@@ -84,8 +84,8 @@ public class DashboardActivity extends AppCompatActivity {
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(DashboardActivity.this, CartActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -115,6 +115,7 @@ public class DashboardActivity extends AppCompatActivity {
         btnCart = findViewById(R.id.btnCart);
         tvHome = findViewById(R.id.tvHome);
         imgAvatarUser = findViewById(R.id.imgAvatarUser);
+        categoryRecycler = findViewById(R.id.categoryRecycler);
     }
     private void setImageSlide(int[] listImage) {
         SlideAdapter slideAdapter = new SlideAdapter(listImage);
@@ -125,7 +126,7 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void setCategoryRecycler(ArrayList<Category> items) {
-        categoryRecycler = findViewById(R.id.categoryRecycler);
+
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.HORIZONTAL, false);
         categoryRecycler.setLayoutManager(layoutManager);
         categoryAdapter = new CategoryAdapter(this, items);
