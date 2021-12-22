@@ -5,9 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -33,7 +36,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class DashboardActivity extends AppCompatActivity {
-    public static String token = "Bearer " + LoginActivity.TOKEN_API;
     RecyclerView categoryRecycler;
     CategoryAdapter categoryAdapter;
     ImageView btnSearchProduct, imgAvatarUser;
@@ -56,8 +58,8 @@ public class DashboardActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dashboard);
         init();
         setImageSlide(listImage);
-        getUser();
         getCategory();
+        getUser(getToken());
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -70,7 +72,8 @@ public class DashboardActivity extends AppCompatActivity {
         imgAvatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
+//                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
+                alertDialogMessage("Đăng xuất", getToken());
             }
         });
         btnMain.setOnClickListener(new View.OnClickListener() {
@@ -91,11 +94,10 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        AppInterface.APP_INTERFACE.logout(token).enqueue(new Callback() {
+        AppInterface.APP_INTERFACE.logout(getToken()).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
-                token = null;
-                LoginActivity.TOKEN_API = null;
+                clearToken();
                 Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
@@ -133,7 +135,7 @@ public class DashboardActivity extends AppCompatActivity {
         categoryRecycler.setAdapter(categoryAdapter);
     }
 
-    private void getUser(){
+    private void getUser(String token){
         AppInterface.APP_INTERFACE.getUser(token).enqueue(new Callback<User>() {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
@@ -173,5 +175,15 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
         builder.show();
+    }
+    private String getToken(){
+        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
+    }
+    private void clearToken() {
+        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(LoginActivity.keyToken, "");
+        editor.apply();
     }
 }

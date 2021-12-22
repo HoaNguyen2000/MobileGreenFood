@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -47,7 +49,7 @@ public class CartActivity extends AppCompatActivity {
         rvCartItems.setAdapter(cartsAdapter);
     }
     private void loadItemCart(){
-        AppInterface.APP_INTERFACE.getCarts(DashboardActivity.token).enqueue(new Callback<List<Carts>>() {
+        AppInterface.APP_INTERFACE.getCarts(getToken()).enqueue(new Callback<List<Carts>>() {
             @Override
             public void onResponse(Call<List<Carts>> call, Response<List<Carts>> response) {
                 List<Carts> cartsList = response.body();
@@ -68,5 +70,9 @@ public class CartActivity extends AppCompatActivity {
         }
         tvCartTotalPrice.setText("$"+String.valueOf(total));
         tvCartFinalPrice.setText("$"+String.valueOf(total));
+    }
+    private String getToken(){
+        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
     }
 }

@@ -2,7 +2,9 @@ package com.example.mobilegreenfood;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -87,7 +89,7 @@ public class DetailsProductActivity extends AppCompatActivity {
     }
 
     private void addProductToCart(){
-        AppInterface.APP_INTERFACE.addProductCarts(DashboardActivity.token, productId, Integer.parseInt((String) tvCountProduct.getText())).enqueue(new Callback<Carts>() {
+        AppInterface.APP_INTERFACE.addProductCarts(getToken(), productId, Integer.parseInt((String) tvCountProduct.getText())).enqueue(new Callback<Carts>() {
             @Override
             public void onResponse(Call<Carts> call, Response<Carts> response) {
                 if(response.code() == 203){
@@ -121,5 +123,9 @@ public class DetailsProductActivity extends AppCompatActivity {
                 Toast.makeText(DetailsProductActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
+    }
+    private String getToken(){
+        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
     }
 }

@@ -48,7 +48,7 @@ public class ViewBookActivity extends AppCompatActivity {
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ViewBookActivity.this, "FAIL TO GET DATA", Toast.LENGTH_SHORT).show();
+                Toast.makeText(ViewBookActivity.this, (CharSequence) error, Toast.LENGTH_SHORT).show();
             }
         });
     }
