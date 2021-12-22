@@ -10,6 +10,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -68,7 +69,7 @@ public class DashboardActivity extends AppCompatActivity {
         imgAvatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
+                getUser(getToken());
             }
         });
         btnMain.setOnClickListener(new View.OnClickListener() {
@@ -140,6 +141,7 @@ public class DashboardActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 infoUser = response.body();
+                alertDialogMessage("Thông tin User", infoUser.getName(), infoUser.getEmail());
             }
 
             @Override
@@ -162,13 +164,15 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
     }
-    private void alertDialogMessage(String title, String message){
+    private void alertDialogMessage(String title, String name, String email){
+        String message = "Tên người dùng: " + name +"\n"
+                + "Email: " + email;
         AlertDialog.Builder builder = new AlertDialog.Builder(DashboardActivity.this);
         builder.setTitle(title);
         builder.setMessage(message);
         builder.setCancelable(true);
         builder.setNegativeButton("Huỷ", null);
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton("Đăng xuất", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 logout();
