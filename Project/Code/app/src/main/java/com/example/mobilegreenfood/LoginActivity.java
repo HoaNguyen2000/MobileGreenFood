@@ -16,7 +16,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
-import com.example.mobilegreenfood.SharedPreference.TokenUser;
 import com.example.mobilegreenfood.model.User;
 
 import java.util.List;
@@ -29,8 +28,7 @@ public class LoginActivity extends AppCompatActivity {
     Button btnLogin;
     TextView tvForgotPassword;
     EditText edUsername, edPassword;
-    public static String keyToken = "TOKEN_LOGIN";
-    public int code = 0;
+    public static String keyToken = "TOKEN_LOGIN", PREF = "PREFERENCE_DATA";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +63,7 @@ public class LoginActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.code() == 200){
+                    clearTextLogin();
                     User users = response.body();
                     setToken(users.getApi_token());
                     startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
@@ -86,20 +85,19 @@ public class LoginActivity extends AppCompatActivity {
         ab.show();
     }
     private void setToken(String token){
-        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences= this.getSharedPreferences(PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString(keyToken, token);
         editor.apply();
     }
     private void checkLoginToken(){
-        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
-        if(sharedPreferences != null){
+        SharedPreferences sharedPreferences= this.getSharedPreferences(PREF, Context.MODE_PRIVATE);
+        String key = sharedPreferences.getString(LoginActivity.keyToken, null);
+        if(key == null){ }
+        else {
             Toast.makeText(LoginActivity.this, "Đang đăng nhập...", Toast.LENGTH_LONG).show();
-            String token = "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
-            if(token.equals("NULL")){ }
-            else {
-                getUser(token);
-            }
+            String token = "Bearer " + sharedPreferences.getString(keyToken, null);
+            getUser(token);
         }
     }
     private void getUser(String token){
@@ -108,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onResponse(Call<User> call, Response<User> response) {
                 if(response.code() == 200){
                     startActivity(new Intent(getApplicationContext(), DashboardActivity.class));
+                    Toast.makeText(LoginActivity.this, "Đăng nhập thành công", Toast.LENGTH_LONG).show();
                 }
                 else {
                     Toast.makeText(LoginActivity.this, "Đăng nhập thất bại", Toast.LENGTH_LONG).show();
@@ -120,5 +119,9 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+    }
+    private void clearTextLogin(){
+        edUsername.setText("");
+        edPassword.setText("");
     }
 }

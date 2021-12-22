@@ -10,7 +10,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -19,7 +18,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
-import com.example.mobilegreenfood.SharedPreference.TokenUser;
 import com.example.mobilegreenfood.adapter.CategoryAdapter;
 import com.example.mobilegreenfood.adapter.SlideAdapter;
 import com.example.mobilegreenfood.model.Category;
@@ -59,7 +57,6 @@ public class DashboardActivity extends AppCompatActivity {
         init();
         setImageSlide(listImage);
         getCategory();
-        getUser(getToken());
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,12 +65,10 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         imgAvatarUser.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
-                alertDialogMessage("Đăng xuất", getToken());
+                alertDialogMessage("Đăng xuất", "Bạn có chắc muốn đăng xuất");
             }
         });
         btnMain.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +78,6 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,16 +88,22 @@ public class DashboardActivity extends AppCompatActivity {
     }
 
     private void logout() {
-        AppInterface.APP_INTERFACE.logout(getToken()).enqueue(new Callback() {
+        AppInterface.APP_INTERFACE.logout(getToken()).enqueue(new Callback<User>() {
             @Override
-            public void onResponse(Call call, Response response) {
-                clearToken();
-                Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
+            public void onResponse(Call<User> call, Response<User> response) {
+                if(response.code() == 200){
+                    clearToken();
+                    Intent intent = new Intent(DashboardActivity.this, LoginActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                    startActivity(intent);
+                    Toast.makeText(DashboardActivity.this, "Đã đăng xuất", Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(DashboardActivity.this, "Đã có lỗi xảy ra", Toast.LENGTH_LONG).show();
+                }
             }
+
             @Override
-            public void onFailure(Call call, Throwable t) {
+            public void onFailure(Call<User> call, Throwable t) {
                 Toast.makeText(DashboardActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -177,13 +177,14 @@ public class DashboardActivity extends AppCompatActivity {
         builder.show();
     }
     private String getToken(){
-        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
-        return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
+        SharedPreferences sharedPreferences= this.getSharedPreferences(LoginActivity.PREF, Context.MODE_PRIVATE);
+        return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, null);
     }
     private void clearToken() {
-        SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
+        SharedPreferences sharedPreferences= this.getSharedPreferences(LoginActivity.PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(LoginActivity.keyToken, "");
+        editor.clear();
         editor.apply();
+        finish();
     }
 }

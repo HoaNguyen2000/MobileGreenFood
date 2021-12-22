@@ -62,9 +62,9 @@ public interface AppInterface {
     @GET("api/get-user")
     Call <User> getUser(@Header("Authorization") String authHeader);
 
-    @Headers({ "Content-Type: application/json;charset=UTF-8"})
+//    @Headers({ "Content-Type: application/json;charset=UTF-8"})
     @GET("api/logout")
-    Call logout(@Header("Authorization") String authHeader);
+    Call <User> logout(@Header("Authorization") String authHeader);
 
     //cart
     @POST("api/add-product-cart")
