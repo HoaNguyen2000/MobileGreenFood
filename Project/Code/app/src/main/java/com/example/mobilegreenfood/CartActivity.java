@@ -5,8 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,6 +19,8 @@ import com.example.mobilegreenfood.adapter.CartsAdapter;
 import com.example.mobilegreenfood.adapter.CategoryAdapter;
 import com.example.mobilegreenfood.model.Carts;
 import com.example.mobilegreenfood.model.Category;
+import com.example.mobilegreenfood.model.Food;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,12 +33,29 @@ public class CartActivity extends AppCompatActivity {
     RecyclerView rvCartItems;
     CartsAdapter cartsAdapter;
     TextView tvCartTotalPrice, tvCartFinalPrice;
+    ImageView btnOpenScanQr;
+    public static Food food;
+    public static boolean isScanSuccess = false;
+    Gson gson = new Gson();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
         init();
         loadItemCart();
+        btnOpenScanQr.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ScanQrActivity.class));
+            }
+        });
+        if(isScanSuccess == true){
+            String message = "Food id:" + food.getProduct_id()+"\n"
+                        +"Food name" + food.getProduct_name()+"\n"
+                        +"Food price" + food.getProduct_price()+"\n";
+            Log.e("Tag345", message);
+            Toast.makeText(getApplicationContext(), "M1MM1", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -40,6 +63,7 @@ public class CartActivity extends AppCompatActivity {
         rvCartItems = findViewById(R.id.rvCartItems);
         tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
         tvCartFinalPrice = findViewById(R.id.tvCartFinalPrice);
+        btnOpenScanQr = findViewById(R.id.btnOpenScanQr);
     }
 
     private void setCartRecycler(List<Carts> items) {

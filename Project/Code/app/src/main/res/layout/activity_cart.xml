@@ -19,18 +19,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tvHearder"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:fontFamily="@font/semibold"
-                android:text="Giỏ hàng"
-                android:textAlignment="center"
-                android:textColor="#ff3d00"
-                android:textSize="30dp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tvHearder"
+                    android:layout_width="360dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/semibold"
+                    android:text="Giỏ hàng"
+                    android:textAlignment="center"
+                    android:textColor="#ff3d00"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/btnOpenScanQr"
+                    android:layout_width="40dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/ic_baseline_camera_24"/>
+            </LinearLayout>
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:layout_width="match_parent"
