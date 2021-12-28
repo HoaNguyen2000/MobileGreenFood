@@ -123,6 +123,7 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
             public void onResponse(Call call, Response response) {
                 if(response.code() == 203){
                     Toast.makeText(context.getApplicationContext(), "Đã cập nhật số lượng", Toast.LENGTH_LONG).show();
+                    caculatorPrice(cartsList);
                 }else if(response.code() == 400){
                     Toast.makeText(context.getApplicationContext(), "Đã có lỗi khi sửa", Toast.LENGTH_LONG).show();
                 }
