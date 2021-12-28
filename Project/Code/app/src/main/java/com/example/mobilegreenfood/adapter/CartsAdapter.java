@@ -90,7 +90,7 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
             @Override
             public void onClick(View v) {
                 int qty = Integer.parseInt(holder.tvCartQuantity.getText().toString());
-                updateCartQty(item.getProduct_id(), qty);
+                updateCartQty(item.getProduct_id(), qty, position);
             }
         });
     }
@@ -117,12 +117,13 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
         }
     }
 
-    private void updateCartQty(int product_id, int quantity){
+    private void updateCartQty(int product_id, int quantity, int postition){
         AppInterface.APP_INTERFACE.updateQtyCart(DashboardActivity.TOKEN_USER, product_id, quantity).enqueue(new Callback() {
             @Override
             public void onResponse(Call call, Response response) {
                 if(response.code() == 203){
                     Toast.makeText(context.getApplicationContext(), "Đã cập nhật số lượng", Toast.LENGTH_LONG).show();
+                    cartsList.get(postition).setQuantity(quantity);
                     caculatorPrice(cartsList);
                 }else if(response.code() == 400){
                     Toast.makeText(context.getApplicationContext(), "Đã có lỗi khi sửa", Toast.LENGTH_LONG).show();
