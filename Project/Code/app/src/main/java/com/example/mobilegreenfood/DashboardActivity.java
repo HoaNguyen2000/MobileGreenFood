@@ -43,6 +43,7 @@ public class DashboardActivity extends AppCompatActivity {
     SliderView sliderView;
     RelativeLayout btnMain, btnCart;
     public static User infoUser;
+    public static String TOKEN_USER;
     int[] listImage = {
             R.drawable.banner1,
             R.drawable.banner2,
@@ -58,6 +59,7 @@ public class DashboardActivity extends AppCompatActivity {
         init();
         setImageSlide(listImage);
         getCategory();
+        TOKEN_USER = getToken();
         btnSearchProduct.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

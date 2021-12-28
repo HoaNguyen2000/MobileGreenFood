@@ -8,7 +8,7 @@
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="10dp"
     android:background="@drawable/static_rv_bg"
-
+    android:id="@+id/cart_item_product"
     android:elevation="3dp">
 
     <ImageView
@@ -95,7 +95,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/cart_btn_update_qty"
+        android:id="@+id/btnUpdateCartQty"
         android:layout_width="35dp"
         android:layout_height="35dp"
         android:layout_marginTop="24dp"
@@ -104,4 +104,14 @@
         app:layout_constraintStart_toStartOf="@+id/cartProductPrice"
         app:layout_constraintTop_toBottomOf="@+id/cartProductPrice"
         app:srcCompat="@drawable/ic_baseline_check_24" />
+
+    <ImageView
+        android:id="@+id/btnDeleteCartItem"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/btnUpdateCartQty"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpdateCartQty"
+        app:layout_constraintTop_toTopOf="@+id/btnUpdateCartQty"
+        app:srcCompat="@android:drawable/ic_menu_delete" />
 </androidx.constraintlayout.widget.ConstraintLayout>

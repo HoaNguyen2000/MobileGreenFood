@@ -110,7 +110,7 @@ public class ScanQrActivity extends AppCompatActivity implements ZXingScannerVie
         });
         builder.show();
     }
-    private String getToken(){
+    public String getToken(){
         SharedPreferences sharedPreferences= this.getSharedPreferences("PREFERENCE_DATA", Context.MODE_PRIVATE);
         return "Bearer " + sharedPreferences.getString(LoginActivity.keyToken, "NULL");
     }
@@ -123,7 +123,7 @@ public class ScanQrActivity extends AppCompatActivity implements ZXingScannerVie
                 }else if(response.code() == 200){
                     Toast.makeText(getApplicationContext(), "Đã thêm vào giỏ", Toast.LENGTH_LONG).show();
                 }
-                onBackPressed();
+                finish();
             }
 
             @Override

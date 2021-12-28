@@ -12,12 +12,14 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.DELETE;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -80,8 +82,18 @@ public interface AppInterface {
             @Header("Authorization") String authHeader
     );
 
+    //203 success ? 400 error
+    @POST("api/update-qty-cart")
+    @FormUrlEncoded
+    Call<Carts> updateQtyCart(
+            @Header("Authorization") String authHeader,
+            @Field("product_id") int product_id,
+            @Field("quantity") int quantity
+    );
+
+    //204 success ? 404 not found
     @GET("api/delete-product-cart/{id}")
-    Call deleteProductCarts(
+    Call<Carts> deleteProductCarts(
             @Header("Authorization") String authHeader,
             @Path("id") int id
     );
