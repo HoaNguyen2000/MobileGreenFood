@@ -102,7 +102,6 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
 
     public static class CartsViewHolder extends RecyclerView.ViewHolder{
         TextView cartProductName, tvCartQuantity, cartProductPrice;
-//        public static TextView tvCartTotalPrice, tvCartFinalPrice;
         ImageView imgCartItem, btnUpCartQty, btnDownCartQty,btnDeleteCartItem, btnUpdateCartQty;
 
         public CartsViewHolder(@NonNull View itemView) {
@@ -115,8 +114,6 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
             cartProductPrice = itemView.findViewById(R.id.cartProductPrice);
             btnDeleteCartItem = itemView.findViewById(R.id.btnDeleteCartItem);
             btnUpdateCartQty = itemView.findViewById(R.id.btnUpdateCartQty);
-//            tvCartTotalPrice = CartActivity.tvCartTotalPrice;
-//            tvCartFinalPrice = CartActivity.tvCartFinalPrice;
         }
     }
 
@@ -180,7 +177,6 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
         }
         CartActivity.tvCartFinalPrice.setText("$"+String.valueOf(total));
         CartActivity.tvCartTotalPrice.setText("$"+String.valueOf(total));
-        Toast.makeText(context, "OOOOOO", Toast.LENGTH_LONG).show();
     }
 
 }
