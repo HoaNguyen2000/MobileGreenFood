@@ -53,6 +53,13 @@ public class CartActivity extends AppCompatActivity {
 
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
+
     private void init(){
         rvCartItems = findViewById(R.id.rvCartItems);
         tvCartTotalPrice = findViewById(R.id.tvCartTotalPrice);
