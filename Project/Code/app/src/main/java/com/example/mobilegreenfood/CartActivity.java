@@ -34,7 +34,7 @@ import retrofit2.Response;
 public class CartActivity extends AppCompatActivity {
     RecyclerView rvCartItems;
     CartsAdapter cartsAdapter;
-    TextView tvCartTotalPrice, tvCartFinalPrice;
+    public static TextView tvCartTotalPrice, tvCartFinalPrice;
     ImageView btnOpenScanQr;
 
     @Override
@@ -88,7 +88,7 @@ public class CartActivity extends AppCompatActivity {
             }
         });
     }
-    private void caculatorPrice(List<Carts> carts){
+    public void caculatorPrice(List<Carts> carts){
         int total = 0;
         for (Carts cart : carts) {
             total += cart.getProduct_price() * cart.getQuantity();

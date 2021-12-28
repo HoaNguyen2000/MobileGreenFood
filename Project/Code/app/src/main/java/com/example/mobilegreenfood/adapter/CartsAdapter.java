@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -101,6 +102,7 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
 
     public static class CartsViewHolder extends RecyclerView.ViewHolder{
         TextView cartProductName, tvCartQuantity, cartProductPrice;
+//        public static TextView tvCartTotalPrice, tvCartFinalPrice;
         ImageView imgCartItem, btnUpCartQty, btnDownCartQty,btnDeleteCartItem, btnUpdateCartQty;
 
         public CartsViewHolder(@NonNull View itemView) {
@@ -113,6 +115,8 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
             cartProductPrice = itemView.findViewById(R.id.cartProductPrice);
             btnDeleteCartItem = itemView.findViewById(R.id.btnDeleteCartItem);
             btnUpdateCartQty = itemView.findViewById(R.id.btnUpdateCartQty);
+//            tvCartTotalPrice = CartActivity.tvCartTotalPrice;
+//            tvCartFinalPrice = CartActivity.tvCartFinalPrice;
         }
     }
 
@@ -152,6 +156,7 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
                 if(response.code() == 204){
                     Toast.makeText(context, "Đã xoá sản phẩm khỏi giỏ hàng", Toast.LENGTH_LONG).show();
                     removeAt(position);
+                    caculatorPrice(cartsList);
                 }else if(response.code() == 404){
                     Toast.makeText(context, "Đã có lỗi khi xoá sản phẩm này", Toast.LENGTH_LONG).show();
                 }
@@ -167,6 +172,15 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
         cartsList.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, cartsList.size());
+    }
+    private void caculatorPrice(List<Carts> carts){
+        int total = 0;
+        for (Carts cart : carts) {
+            total += cart.getProduct_price() * cart.getQuantity();
+        }
+        CartActivity.tvCartFinalPrice.setText("$"+String.valueOf(total));
+        CartActivity.tvCartTotalPrice.setText("$"+String.valueOf(total));
+        Toast.makeText(context, "OOOOOO", Toast.LENGTH_LONG).show();
     }
 
 }
