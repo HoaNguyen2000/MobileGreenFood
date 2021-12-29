@@ -177,8 +177,12 @@ public class CartsAdapter extends  RecyclerView.Adapter<CartsAdapter.CartsViewHo
         for (Carts cart : carts) {
             total += cart.getProduct_price() * cart.getQuantity();
         }
-        CartActivity.tvCartFinalPrice.setText("$"+String.valueOf(total));
         CartActivity.tvCartTotalPrice.setText("$"+String.valueOf(total));
+        double current = Double.valueOf(total);
+        double discount_value = Double.valueOf(CartActivity.tvDiscountPercent.getText().toString().replace("%", ""));
+        double percent = (current * (discount_value / 100));
+        double finalPrice = current - percent;
+        CartActivity.tvCartFinalPrice.setText("$"+String.valueOf(finalPrice));
     }
 
 }

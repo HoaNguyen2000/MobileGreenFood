@@ -2,7 +2,9 @@ package com.example.mobilegreenfood.Interface;
 
 import com.example.mobilegreenfood.model.Carts;
 import com.example.mobilegreenfood.model.Category;
+import com.example.mobilegreenfood.model.Coupon;
 import com.example.mobilegreenfood.model.Food;
+import com.example.mobilegreenfood.model.Order;
 import com.example.mobilegreenfood.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -96,5 +98,27 @@ public interface AppInterface {
     Call<Carts> deleteProductCarts(
             @Header("Authorization") String authHeader,
             @Path("id") int id
+    );
+
+    @GET("api/check-coupon/{coupon_code}")
+    Call<Coupon> checkCoupon(
+         @Path("coupon_code") String coupon_code
+    );
+
+    @POST("api/get-order")
+    Call<Order> getOrder(
+            @Header("Authorization") String authHeader
+    );
+
+    @POST("api/insert-coupon-order")
+    @FormUrlEncoded
+    Call<Order> insertCouponOrder(
+            @Header("Authorization") String authHeader,
+            @Field("coupon_id") int coupon_id
+    );
+
+    @POST("api/remove-coupon-order")
+    Call<Order> removeCoupon(
+            @Header("Authorization") String authHeader
     );
 }
