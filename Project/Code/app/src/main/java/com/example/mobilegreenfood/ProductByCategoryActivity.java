@@ -12,9 +12,7 @@ import android.widget.Toast;
 
 import com.example.mobilegreenfood.Interface.AppInterface;
 import com.example.mobilegreenfood.adapter.ListProductAdapter;
-import com.example.mobilegreenfood.adapter.PopularFoodAdapter;
 import com.example.mobilegreenfood.model.Food;
-import com.example.mobilegreenfood.model.PopularFood;
 
 import java.util.List;
 

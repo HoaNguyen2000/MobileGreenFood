@@ -74,13 +74,13 @@ public class DashboardActivity extends AppCompatActivity {
                 getUser(getToken());
             }
         });
-        btnMain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
+//        btnMain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(DashboardActivity.this, MainActivity.class);
+//                startActivity(intent);
+//            }
+//        });
         btnCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

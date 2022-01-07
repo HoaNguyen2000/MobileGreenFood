@@ -121,4 +121,12 @@ public interface AppInterface {
     Call<Order> removeCoupon(
             @Header("Authorization") String authHeader
     );
+
+    @POST("api/checkout-order")
+    @FormUrlEncoded
+    Call<Order> checkoutOrder(
+            @Header("Authorization") String authHeader,
+            @Field("amount") double amount,
+            @Field("order_note") String order_noted
+    );
 }

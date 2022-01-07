@@ -32,7 +32,7 @@ import retrofit2.Response;
 public class CartActivity extends AppCompatActivity {
     RecyclerView rvCartItems;
     CartsAdapter cartsAdapter;
-    public static TextView tvCartTotalPrice, tvCartFinalPrice, tvDiscountPercent;
+    public static TextView tvCartTotalPrice, tvCartFinalPrice, tvDiscountPercent, btnCheckoutCart;
     EditText edCoupon;
     ImageView btnOpenScanQr, btnDeleteCoupon, btnAddCoupon;
     @Override
@@ -64,6 +64,14 @@ public class CartActivity extends AppCompatActivity {
                 checkCoupon(coupon_code);
             }
         });
+        btnCheckoutCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CartActivity.this, CheckoutActivity.class);
+                intent.putExtra("money", tvCartFinalPrice.getText().toString());
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -79,17 +87,20 @@ public class CartActivity extends AppCompatActivity {
         tvDiscountPercent = findViewById(R.id.tvDiscountPercent);
         btnDeleteCoupon = findViewById(R.id.btnDeleteCoupon);
         btnAddCoupon = findViewById(R.id.btnAddCoupon);
+        btnCheckoutCart = findViewById(R.id.btnCheckoutCart);
         btnOpenScanQr = findViewById(R.id.btnOpenScanQr);
         edCoupon = findViewById(R.id.edCoupon);
     }
     public void caculatorPrice(List<Carts> carts){
         int total = 0;
-        for (Carts cart : carts) {
-            total += cart.getProduct_price() * cart.getQuantity();
-        }
-        tvCartTotalPrice.setText("$"+String.valueOf(total));
-        if(tvDiscountPercent.getText().toString().equals("0%")){
-            tvCartFinalPrice.setText("$"+String.valueOf(total));
+        if(carts.size() != 0) {
+            for (Carts cart : carts) {
+                total += cart.getProduct_price() * cart.getQuantity();
+            }
+            tvCartTotalPrice.setText("$" + String.valueOf(total));
+            if (tvDiscountPercent.getText().toString().equals("0%")) {
+                tvCartFinalPrice.setText("$" + String.valueOf(total));
+            }
         }
         Log.e("finalPriceTotal", String.valueOf(total));
     }
@@ -103,10 +114,13 @@ public class CartActivity extends AppCompatActivity {
         AppInterface.APP_INTERFACE.getCarts(getToken()).enqueue(new Callback<List<Carts>>() {
             @Override
             public void onResponse(Call<List<Carts>> call, Response<List<Carts>> response) {
-                List<Carts> cartsList = response.body();
-                setCartRecycler(cartsList);
-                caculatorPrice(cartsList);
-                getOrder();
+                if(response.body() == null){}
+                else {
+                    List<Carts> cartsList = response.body();
+                    setCartRecycler(cartsList);
+                    caculatorPrice(cartsList);
+                    getOrder();
+                }
             }
 
             @Override

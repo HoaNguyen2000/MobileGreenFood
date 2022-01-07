@@ -41,7 +41,7 @@ public class ScanQrActivity extends AppCompatActivity implements ZXingScannerVie
         super.onCreate(savedInstanceState);
         scannerView = new ZXingScannerView(this);
         setContentView(scannerView);
-        init();
+//        init();
         Dexter.withContext(getApplicationContext())
                 .withPermission(Manifest.permission.CAMERA)
                 .withListener(new PermissionListener() {
@@ -85,14 +85,14 @@ public class ScanQrActivity extends AppCompatActivity implements ZXingScannerVie
         scannerView.setResultHandler(this);
         scannerView.startCamera();
     }
-    private void init(){
-        popupId = findViewById(R.id.popupId);
-        popupName = findViewById(R.id.popupName);
-        popupPrice = findViewById(R.id.popupPrice);
-        popupQtyInput = findViewById(R.id.popupQtyInput);
-        popupBtnAddCart = findViewById(R.id.popupBtnAddCart);
-        popupBtnCancel = findViewById(R.id.popupBtnCancel);
-    }
+//    private void init(){
+//        popupId = findViewById(R.id.popupId);
+//        popupName = findViewById(R.id.popupName);
+//        popupPrice = findViewById(R.id.popupPrice);
+//        popupQtyInput = findViewById(R.id.popupQtyInput);
+//        popupBtnAddCart = findViewById(R.id.popupBtnAddCart);
+//        popupBtnCancel = findViewById(R.id.popupBtnCancel);
+//    }
     private void alert(String message, int id){
         AlertDialog.Builder builder = new AlertDialog.Builder(ScanQrActivity.this);
         builder.setTitle("Kết quả").setMessage(message);
