@@ -41,7 +41,7 @@ public class DashboardActivity extends AppCompatActivity {
     EditText edSearchProduct;
     TextView tvHome;
     SliderView sliderView;
-    RelativeLayout btnMain, btnCart;
+    RelativeLayout btnMain, btnCart, btnViewOrders;
     public static User infoUser;
     public static String TOKEN_USER;
     int[] listImage = {
@@ -88,6 +88,12 @@ public class DashboardActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        btnViewOrders.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), ViewListOrderActivity.class));
+            }
+        });
     }
 
     private void logout() {
@@ -118,6 +124,7 @@ public class DashboardActivity extends AppCompatActivity {
         edSearchProduct = findViewById(R.id.edSearchProduct);
         btnMain = findViewById(R.id.btnMain);
         btnCart = findViewById(R.id.btnCart);
+        btnViewOrders = findViewById(R.id.btnViewOrders);
         tvHome = findViewById(R.id.tvHome);
         imgAvatarUser = findViewById(R.id.imgAvatarUser);
         categoryRecycler = findViewById(R.id.categoryRecycler);

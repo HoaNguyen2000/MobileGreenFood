@@ -5,6 +5,7 @@ import com.example.mobilegreenfood.model.Category;
 import com.example.mobilegreenfood.model.Coupon;
 import com.example.mobilegreenfood.model.Food;
 import com.example.mobilegreenfood.model.Order;
+import com.example.mobilegreenfood.model.OrderItems;
 import com.example.mobilegreenfood.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -128,5 +129,15 @@ public interface AppInterface {
             @Header("Authorization") String authHeader,
             @Field("amount") double amount,
             @Field("order_note") String order_noted
+    );
+
+    @POST("api/get-list-order")
+    Call<List<Order>> getListOrder(
+            @Header("Authorization") String authHeader
+    );
+
+    @GET("get/get-order-items/{id}")
+    Call<List<OrderItems>> getOrderItem(
+            @Path("id") int id
     );
 }

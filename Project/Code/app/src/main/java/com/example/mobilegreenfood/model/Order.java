@@ -1,15 +1,21 @@
 package com.example.mobilegreenfood.model;
 
-public class Order {
+import java.io.Serializable;
+
+public class Order implements Serializable {
     private int order_id;
     private int user_id;
     private int coupon_id = 0;
-    private int amount;
+    private double amount;
     private int order_status;
     private String order_note;
     private String coupon_code;
     private int coupon_percent_discount = 0;
     private int coupon_count;
+
+    public Order() {
+    }
+
     public Order(int order_id, int user_id, int coupon_id, int amount, int order_status, String order_note) {
         this.order_id = order_id;
         this.user_id = user_id;
@@ -79,7 +85,7 @@ public class Order {
         this.coupon_id = coupon_id;
     }
 
-    public int getAmount() {
+    public double getAmount() {
         return amount;
     }
 

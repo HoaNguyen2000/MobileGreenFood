@@ -32,10 +32,13 @@
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_product_by_category.xml" value="0.14788732394366197" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_scan_qr.xml" value="0.1331521739130435" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_search_product.xml" value="0.12547528517110265" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_view_list_order.xml" value="0.22418478260869565" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/activity_view_order_detail.xml" value="0.2" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/cart_item.xml" value="0.4" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/category_item.xml" value="0.536" />
-        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/food_item.xml" value="0.536" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/food_item.xml" value="0.25569176882662" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/image_slide_item.xml" value="0.13858695652173914" />
+        <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/order_item.xml" value="0.536" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/popular_food_row_item.xml" value="0.3348623853211009" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/popup_product_cart.xml" value="0.325" />
         <entry key="..\:/BTAndroid/Project/Code/app/src/main/res/layout/search_food_item.xml" value="0.25" />
