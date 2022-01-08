@@ -42,6 +42,12 @@ public class ViewListOrderActivity extends AppCompatActivity {
         rvListOrder = findViewById(R.id.rvListOrder);
         loadOrders();
     }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        finish();
+        startActivity(getIntent());
+    }
     private void setCartRecycler(List<Order> items) {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this, RecyclerView.VERTICAL, false);
         rvListOrder.setLayoutManager(layoutManager);

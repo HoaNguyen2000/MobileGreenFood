@@ -10,6 +10,7 @@ import com.example.mobilegreenfood.model.User;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -136,8 +137,17 @@ public interface AppInterface {
             @Header("Authorization") String authHeader
     );
 
-    @GET("get/get-order-items/{id}")
+    @GET("api/get-order-items/{id}")
     Call<List<OrderItems>> getOrderItem(
+            @Header("Authorization") String authHeader,
             @Path("id") int id
+    );
+    
+    @POST("api/update-order-status")
+    @FormUrlEncoded
+    Call<Order> updateOrderStatus(
+            @Header("Authorization") String authHeader,
+            @Field("order_id") int order_id,
+            @Field("order_status") int order_status
     );
 }
